@@ -86,13 +86,18 @@ To use link in `ibm-tabs`, wrap `ibm-tab`s in an anchor tags with
 
         color: inherit;
       }
+      
+      ibm-toolbar a:after {
+        content: "\00a0\00a0";
+      }
     </style>
 
-    <content></content>
+    <slot></slot>
   </template>
   <script>
-    Polymer({
-      is: 'ibm-tabs',
+    
+    IBMTabs extends Polymer.Elements {
+      static get is() { return 'ibm-tabs'; }
 
       behaviors: [
         Polymer.IronMenubarBehavior
@@ -102,15 +107,16 @@ To use link in `ibm-tabs`, wrap `ibm-tab`s in an anchor tags with
         role: 'tablist'
       },
 
-      properties: {
-        selectable: {
-          type: String,
-          value: 'ibm-tab'
-        }
-      },
-
+      static get properties() {
+        return {
+          selectable: {
+            type: String,
+            value: 'ibm-tab'
+          }
+      }        
+        
       // TODO: Waiting for PolymerElements/iron-menu-behavior/issues/81
-      _updateItems: function() {
+      _updateItems() {
         var nodes = Polymer.dom(this).querySelectorAll(this.selectable || '*');
         nodes = Array.prototype.filter.call(nodes, this._bindFilterItem);
         this._setItems(nodes);
