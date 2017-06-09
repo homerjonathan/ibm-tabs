@@ -71,15 +71,15 @@ To use link in `ibm-tabs`, wrap `ibm-tab`s in an anchor tags with
         overflow: auto;
       }
 
-      ::content > * {
+      ::slotted > * {
         margin-left: 25px;
       }
 
-      ::content > *:first-of-type {
+      ::slotted > *:first-of-type {
         margin-left: 0;
       }
 
-      ::content > a {
+      ::slotted > a {
         @apply --layout-inline;
 
         text-decoration: none;
@@ -94,7 +94,8 @@ To use link in `ibm-tabs`, wrap `ibm-tab`s in an anchor tags with
 
     <slot></slot>
   </template>
-  <script>
+</dom-module>
+<script>
     
     IBMTabs extends Polymer.IronMenubarBehavior {
       static get is() { return 'ibm-tabs'; }
@@ -119,6 +120,7 @@ To use link in `ibm-tabs`, wrap `ibm-tab`s in an anchor tags with
         nodes = Array.prototype.filter.call(nodes, this._bindFilterItem);
         this._setItems(nodes);
       }
-    });
+    }
+      customElements.define(IBMTabs.is, IBMTabs);
   </script>
-</dom-module>
+
