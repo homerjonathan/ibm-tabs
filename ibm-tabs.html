@@ -96,17 +96,15 @@ To use link in `ibm-tabs`, wrap `ibm-tab`s in an anchor tags with
   </template>
   <script>
     
-    IBMTabs extends Polymer.Elements {
+    IBMTabs extends Polymer.IronMenubarBehavior {
       static get is() { return 'ibm-tabs'; }
 
-      behaviors: [
-        Polymer.IronMenubarBehavior
-      ],
-
-      hostAttributes: {
-        role: 'tablist'
-      },
-
+      constructor() {
+        super();
+        this.hostAttributes = {
+            role: 'tablist'
+          }
+      }
       static get properties() {
         return {
           selectable: {
@@ -114,7 +112,7 @@ To use link in `ibm-tabs`, wrap `ibm-tab`s in an anchor tags with
             value: 'ibm-tab'
           }
       }        
-        
+       
       // TODO: Waiting for PolymerElements/iron-menu-behavior/issues/81
       _updateItems() {
         var nodes = Polymer.dom(this).querySelectorAll(this.selectable || '*');
