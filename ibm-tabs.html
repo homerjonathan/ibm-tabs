@@ -97,7 +97,7 @@ To use link in `ibm-tabs`, wrap `ibm-tab`s in an anchor tags with
 </dom-module>
 <script>
     
-    IBMTabs extends Polymer.IronMenubarBehavior {
+    IBMTabs extends Polymer.mixinBehaviors([Polymer.IronMenubarBehavior],Polymer.Element)  {
       static get is() { return 'ibm-tabs'; }
 
       constructor() {
