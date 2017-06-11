@@ -80,21 +80,20 @@ Custom property            | Description                            | Default
         transform: translate3d(0, 0, 0);
       }
     </style>
-
-    <content></content>
+    <slot></slot>
   </template>
-  <script>
-    Polymer({
-      is: 'ibm-tab',
-
-      behaviors: [
-        Polymer.IronControlState,
-        Polymer.IronButtonState
-      ],
-
-      hostAttributes: {
-        role: 'tab'
-      }
-    });
-  </script>
 </dom-module>
+<script>
+    class IBMTab extends Polymer.mixinBehaviors([Polymer.IronControlState,Polymer.IronButtonState],Polymer.Element) {
+        static get is() { return 'ibm-tab'; }
+        constructor() {
+            super();
+            this.hostAttributes = {
+                role: 'tab'
+            }
+        }
+
+    }
+    customElements.define(IBMTab.is, IBMTab);
+</script>
+
