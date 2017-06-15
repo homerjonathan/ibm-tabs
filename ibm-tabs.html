@@ -71,15 +71,15 @@ To use link in `ibm-tabs`, wrap `ibm-tab`s in an anchor tags with
         overflow: auto;
       }
 
-      ::slotted > * {
+      ::slotted ( * ) {
         margin-left: 25px;
       }
 
-      ::slotted > *:first-of-type {
+      ::slotted ( *:first-of-type){
         margin-left: 0;
       }
 
-      ::slotted > a {
+      ::slotted ( a ) {
         @apply --layout-inline;
 
         text-decoration: none;
@@ -97,7 +97,7 @@ To use link in `ibm-tabs`, wrap `ibm-tab`s in an anchor tags with
 </dom-module>
 <script>
     
-    IBMTabs extends Polymer.mixinBehaviors([Polymer.IronMenubarBehavior],Polymer.Element)  {
+    class IBMTabs extends Polymer.mixinBehaviors([Polymer.IronMenubarBehavior],Polymer.Element)  {
       static get is() { return 'ibm-tabs'; }
 
       constructor() {
@@ -107,12 +107,13 @@ To use link in `ibm-tabs`, wrap `ibm-tab`s in an anchor tags with
           }
       }
       static get properties() {
-        return {
-          selectable: {
-            type: String,
-            value: 'ibm-tab'
-          }
-      }        
+            return {
+                selectable: {
+                    type: String,
+                    value: 'ibm-tab'
+                }
+            }
+      }
        
       // TODO: Waiting for PolymerElements/iron-menu-behavior/issues/81
       _updateItems() {
